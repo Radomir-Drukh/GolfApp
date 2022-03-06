@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Modalize } from "react-native-modalize";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import BookingModule from "./src/components/BookingModule";
 import SelectButton from "./src/components/SelectButton";
 
@@ -12,7 +12,11 @@ export default function App() {
     modalizeRef.current?.open();
   };
 
-  let chosenDate: string = "Еще не выбрана";
+  const onClose = () => {
+    modalizeRef.current?.close();
+  };
+
+  const [chosenDate, setChosenDate] = useState("Еще не выбрана");
 
   return (
     <View style={styles.container}>
@@ -23,12 +27,13 @@ export default function App() {
 
       <Modalize
         ref={modalizeRef}
-        modalHeight={500}
+        modalHeight={544}
         modalStyle={styles.container}
         disableScrollIfPossible={false}
-        velocity={1000}
+        velocity={10}
         withHandle={true}
-        FooterComponent={<SelectButton />}
+        threshold={10}
+        FooterComponent={<SelectButton onClose={onClose} />}
       >
         <BookingModule />
       </Modalize>

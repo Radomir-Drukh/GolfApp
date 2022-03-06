@@ -43,6 +43,8 @@ export default function OneDayTimeSlots({ chosenDay, chosenTime }) {
 
   let row: any[] = [];
 
+  //Где-то Warning "Each child in a list should have a unique 'key'. У массива массивов тоже должен быть ключ?"
+
   for (let i = 0; i < slotsInDaytime; i++) {
     row.push(
       <TimeSlot
