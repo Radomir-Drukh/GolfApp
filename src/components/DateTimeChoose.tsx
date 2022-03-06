@@ -9,50 +9,69 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import OneTimeChoose from "./OneTimeChoose";
+import OneDayTimeSlots from "./OneDayTimeSlots";
 
 export default function DateTimeChoose(chosenDay: any) {
-  const [chosenTime, setChosenTime] = useState(0);
-  //onPress у TouchableOpacity работает дико криво, я не смог поправить до конца
+  const [chosenTime, setChosenTime] = useState("");
+
   return (
     <View style={{ paddingTop: "10%", height: 500 }}>
       <View style={styles.allTimes}>
         <TouchableOpacity
           onPress={() => {
-            setChosenTime(1);
+            setChosenTime("Утро");
           }}
-          hitSlop={{ top: 60, bottom: 60, left: 15, right: 15 }}
           style={[
             styles.oneTime,
-            { backgroundColor: chosenTime === 1 ? "#FFEF00" : "#FFFFFF" },
+            { backgroundColor: chosenTime === "Утро" ? "#FFEF00" : "#FFFFFF" },
           ]}
         >
-          <OneTimeChoose picName="sunrise" timeName="Утро" />
+          <Feather
+            name={"sunrise"}
+            size={24}
+            color="black"
+            style={{ marginRight: 10 }}
+          />
+          <Text>Утро</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            setChosenTime(2);
+            setChosenTime("День");
           }}
-          hitSlop={{ top: 60, bottom: 60, left: 15, right: 15 }}
           style={[
             styles.oneTime,
-            { backgroundColor: chosenTime === 2 ? "#FFEF00" : "#FFFFFF" },
+            { backgroundColor: chosenTime === "День" ? "#FFEF00" : "#FFFFFF" },
           ]}
         >
-          <OneTimeChoose picName="sun" timeName="День" />
+          <Feather
+            name={"sun"}
+            size={24}
+            color="black"
+            style={{ marginRight: 10 }}
+          />
+          <Text>День</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => setChosenTime(3)}
-          hitSlop={{ top: 60, bottom: 60, left: 15, right: 15 }}
+          onPress={() => {
+            setChosenTime("Вечер");
+          }}
           style={[
             styles.oneTime,
-            { backgroundColor: chosenTime === 3 ? "#FFEF00" : "#FFFFFF" },
+            { backgroundColor: chosenTime === "Вечер" ? "#FFEF00" : "#FFFFFF" },
           ]}
         >
-          <OneTimeChoose picName="moon" timeName="Вечер" />
+          <Feather
+            name={"moon"}
+            size={24}
+            color="black"
+            style={{ marginRight: 10 }}
+          />
+          <Text>Вечер</Text>
         </TouchableOpacity>
       </View>
-      <View></View>
+      <View>
+        <OneDayTimeSlots chosenDay={chosenDay} chosenTime={chosenTime} />
+      </View>
     </View>
   );
 }
