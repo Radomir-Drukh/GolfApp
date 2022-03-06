@@ -12,10 +12,10 @@ import {
 import OneDayTimeSlots from "./OneDayTimeSlots";
 
 export default function DateTimeChoose(chosenDay: any) {
-  const [chosenTime, setChosenTime] = useState("");
+  const [chosenTime, setChosenTime] = useState("Утро");
 
   return (
-    <View style={{ paddingTop: "10%", height: 500 }}>
+    <View style={{ paddingTop: 30, height: 500 }}>
       <View style={styles.allTimes}>
         <TouchableOpacity
           onPress={() => {
@@ -69,9 +69,7 @@ export default function DateTimeChoose(chosenDay: any) {
           <Text>Вечер</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <OneDayTimeSlots chosenDay={chosenDay} chosenTime={chosenTime} />
-      </View>
+      <OneDayTimeSlots chosenDay={chosenDay} chosenTime={chosenTime} />
     </View>
   );
 }
@@ -81,15 +79,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    height: 50,
-    marginHorizontal: 7,
+    height: 40,
   },
   oneTime: {
-    flex: 1,
+    width: "30%",
     borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    height: 50,
+    height: "100%",
+    marginHorizontal: 5,
   },
 });

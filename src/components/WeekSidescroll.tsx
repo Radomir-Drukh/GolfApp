@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-export default function WeekSidescroll() {
-  let DATA = [];
+export default function WeekSidescroll({ chosenDay }) {
+  let DATA: { number: string; weekday: string }[] = [];
 
   for (var i = 1; i < 30; i++) {
     let day = { number: i.toString(), weekday: i.toString() };
@@ -39,14 +39,7 @@ export default function WeekSidescroll() {
         break;
     }
   }
-
-  /*const iterator = DATA.keys();
-
-  for (const key of iterator) {
-    console.log(key);
-  }*/
-
-  const [selectedNumber, changeSelectedNumber] = useState(0);
+  const [selectedNumber, changeSelectedNumber] = useState(chosenDay);
 
   const renderItem = ({ item }) => (
     <Item number={item.number} weekday={item.weekday} />
@@ -91,7 +84,7 @@ export default function WeekSidescroll() {
       <FlatList
         onScrollBeginDrag={() => console.log("begin")}
         onScrollEndDrag={() => console.log("end")}
-        style={{ paddingTop: 20 }}
+        style={{ paddingTop: 20, paddingHorizontal: 5 }}
         horizontal={true}
         data={DATA}
         renderItem={renderItem}
