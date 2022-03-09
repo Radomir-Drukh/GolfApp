@@ -13,8 +13,6 @@ import Animated, {
   useAnimatedScrollHandler,
 } from "react-native-reanimated";
 
-const AnimatFlatList = Animated.createAnimatedComponent(FlatList);
-
 export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
   let DATA: { number: string; weekday: string }[] = [];
 
@@ -88,13 +86,6 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
 
   const [currentLeftItemIndex, setCurrentLeftItemIndex] = useState(0);
 
-  const _onViewableItemsChanged = useCallback(({ viewableItems, changed }) => {
-    //console.log("Visible items are", viewableItems);
-    setCurrentLeftItemIndex(viewableItems[0].index);
-    console.log("Current left item is", currentLeftItemIndex); //WTF Why 0?
-    console.log("Current left item is", viewableItems[0].index);
-  }, []);
-
   const animatedFlatlistRef =
     useRef<FlatList<{ number: string; weekday: string }>>(null);
 
@@ -105,39 +96,41 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
       lastContentOffset.value > event.nativeEvent.contentOffset.x + 10 &&
       isScrolling.value
     ) {
-      console.log("Left");
+      //console.log("Left");
       lastContentOffset.value = event.nativeEvent.contentOffset.x;
       if (
         animatedFlatlistRef.current !== null &&
         Math.ceil(currentLeftItemIndex / 7) * 7 - 7 >= 0
       ) {
-        console.log(
+        /*console.log(
           "Trying to scroll left to",
           Math.ceil(currentLeftItemIndex / 7) * 7 - 7
-        );
+        );*/
         animatedFlatlistRef.current.scrollToIndex({
           animated: true,
           index: Math.ceil(currentLeftItemIndex / 7) * 7 - 7,
         });
+        setCurrentLeftItemIndex(Math.ceil(currentLeftItemIndex / 7) * 7 - 7);
       }
     } else if (
       lastContentOffset.value < event.nativeEvent.contentOffset.x - 10 &&
       isScrolling.value
     ) {
-      console.log("Right");
+      //console.log("Right");
       lastContentOffset.value = event.nativeEvent.contentOffset.x;
       if (
         animatedFlatlistRef.current !== null &&
         Math.floor(currentLeftItemIndex / 7) * 7 + 7 < 30
       ) {
-        console.log(
+        /*console.log(
           "Trying to scroll right to",
           Math.floor(currentLeftItemIndex / 7) * 7 + 7 < 30
-        );
+        );*/
         animatedFlatlistRef.current.scrollToIndex({
           animated: true,
           index: Math.floor(currentLeftItemIndex / 7) * 7 + 7,
         });
+        setCurrentLeftItemIndex(Math.floor(currentLeftItemIndex / 7) * 7 + 7);
       }
     }
   };
@@ -169,8 +162,6 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
         keyExtractor={(item) => item.number + item.weekday}
         initialNumToRender={10}
         ref={animatedFlatlistRef}
-        onViewableItemsChanged={_onViewableItemsChanged}
-        viewabilityConfig={{ itemVisiblePercentThreshold: 10 }}
       />
     </View>
   );
@@ -178,7 +169,6 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
 
 const styles = StyleSheet.create({
   item: {
-    //backgroundColor: "#FFDF00",
     paddingTop: 5,
     marginVertical: 8,
     marginHorizontal: 6.5,
