@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -8,8 +8,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import Animated, {
+  useSharedValue,
+  useAnimatedScrollHandler,
+} from "react-native-reanimated";
 
-export default function WeekSidescroll({ chosenDay }) {
+const AnimatFlatList = Animated.createAnimatedComponent(FlatList);
+
+export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
   let DATA: { number: string; weekday: string }[] = [];
 
   for (var i = 1; i < 30; i++) {
@@ -40,6 +46,10 @@ export default function WeekSidescroll({ chosenDay }) {
     }
   }
   const [selectedNumber, changeSelectedNumber] = useState(chosenDay);
+
+  useEffect(() => {
+    setChosenDateDay(selectedNumber);
+  });
 
   const renderItem = ({ item }) => (
     <Item number={item.number} weekday={item.weekday} />
@@ -76,20 +86,91 @@ export default function WeekSidescroll({ chosenDay }) {
     </TouchableOpacity>
   );
 
+  const [currentLeftItemIndex, setCurrentLeftItemIndex] = useState(0);
+
+  const _onViewableItemsChanged = useCallback(({ viewableItems, changed }) => {
+    //console.log("Visible items are", viewableItems);
+    setCurrentLeftItemIndex(viewableItems[0].index);
+    console.log("Current left item is", currentLeftItemIndex); //WTF Why 0?
+    console.log("Current left item is", viewableItems[0].index);
+  }, []);
+
+  const animatedFlatlistRef =
+    useRef<FlatList<{ number: string; weekday: string }>>(null);
+
+  let lastContentOffset = useSharedValue(0);
+  let isScrolling = useSharedValue(false);
+  const onScroll = (event) => {
+    if (
+      lastContentOffset.value > event.nativeEvent.contentOffset.x + 10 &&
+      isScrolling.value
+    ) {
+      console.log("Left");
+      lastContentOffset.value = event.nativeEvent.contentOffset.x;
+      if (
+        animatedFlatlistRef.current !== null &&
+        Math.ceil(currentLeftItemIndex / 7) * 7 - 7 >= 0
+      ) {
+        console.log(
+          "Trying to scroll left to",
+          Math.ceil(currentLeftItemIndex / 7) * 7 - 7
+        );
+        animatedFlatlistRef.current.scrollToIndex({
+          animated: true,
+          index: Math.ceil(currentLeftItemIndex / 7) * 7 - 7,
+        });
+      }
+    } else if (
+      lastContentOffset.value < event.nativeEvent.contentOffset.x - 10 &&
+      isScrolling.value
+    ) {
+      console.log("Right");
+      lastContentOffset.value = event.nativeEvent.contentOffset.x;
+      if (
+        animatedFlatlistRef.current !== null &&
+        Math.floor(currentLeftItemIndex / 7) * 7 + 7 < 30
+      ) {
+        console.log(
+          "Trying to scroll right to",
+          Math.floor(currentLeftItemIndex / 7) * 7 + 7 < 30
+        );
+        animatedFlatlistRef.current.scrollToIndex({
+          animated: true,
+          index: Math.floor(currentLeftItemIndex / 7) * 7 + 7,
+        });
+      }
+    }
+  };
+
+  const onBeginDrag = (e) => {
+    //console.log("Drag started");
+    isScrolling.value = true;
+    lastContentOffset.value = e.nativeEvent.contentOffset.x;
+  };
+
+  const onEndDrag = (e) => {
+    //console.log("Drag ended");
+    isScrolling.value = false;
+  };
+
   return (
     <View>
       <Text style={{ fontSize: 20, paddingTop: "7%", paddingLeft: "3%" }}>
         Выберите время записи
       </Text>
       <FlatList
-        onScrollBeginDrag={() => console.log("begin")}
-        onScrollEndDrag={() => console.log("end")}
+        onScroll={onScroll}
+        onScrollBeginDrag={onBeginDrag}
+        onScrollEndDrag={onEndDrag}
         style={{ paddingTop: 20, paddingHorizontal: 5 }}
         horizontal={true}
         data={DATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.number + item.weekday}
         initialNumToRender={10}
+        ref={animatedFlatlistRef}
+        onViewableItemsChanged={_onViewableItemsChanged}
+        viewabilityConfig={{ itemVisiblePercentThreshold: 10 }}
       />
     </View>
   );

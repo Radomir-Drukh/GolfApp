@@ -16,14 +16,20 @@ export default function App() {
     modalizeRef.current?.close();
   };
 
-  const [chosenDate, setChosenDate] = useState("Еще не выбрана");
+  const [chosenDateDay, setChosenDateDay] = useState("");
+  const [chosenDateTime, setChosenDateTime] = useState("");
+
+  let verifiedDate =
+    chosenDateDay === "" || chosenDateTime === ""
+      ? "Еще не выбран"
+      : chosenDateDay + " числа в " + chosenDateTime;
 
   return (
     <View style={styles.container}>
       <Pressable style={styles.choosingScreenComponents} onPress={onOpen}>
         <Text style={{ fontSize: 20 }}>Выбрать дату</Text>
       </Pressable>
-      <Text>Выбранная дата: {chosenDate}</Text>
+      <Text>Вы забронировали слот: {verifiedDate}</Text>
 
       <Modalize
         ref={modalizeRef}
@@ -35,7 +41,10 @@ export default function App() {
         threshold={10}
         FooterComponent={<SelectButton onClose={onClose} />}
       >
-        <BookingModule />
+        <BookingModule
+          setChosenDateDay={setChosenDateDay}
+          setChosenDateTime={setChosenDateTime}
+        />
       </Modalize>
     </View>
   );

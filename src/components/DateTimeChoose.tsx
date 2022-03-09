@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -11,7 +11,7 @@ import {
 
 import OneDayTimeSlots from "./OneDayTimeSlots";
 
-export default function DateTimeChoose(chosenDay: any) {
+export default function DateTimeChoose({ chosenDay, setChosenDateTime }) {
   const [chosenTime, setChosenTime] = useState("Утро");
 
   return (
@@ -69,7 +69,11 @@ export default function DateTimeChoose(chosenDay: any) {
           <Text>Вечер</Text>
         </TouchableOpacity>
       </View>
-      <OneDayTimeSlots chosenDay={chosenDay} chosenTime={chosenTime} />
+      <OneDayTimeSlots
+        setChosenDateTime={setChosenDateTime}
+        chosenDay={chosenDay}
+        chosenTime={chosenTime}
+      />
     </View>
   );
 }

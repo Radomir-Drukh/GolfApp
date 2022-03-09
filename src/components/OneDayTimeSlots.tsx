@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -11,7 +11,11 @@ import {
 
 import TimeSlot from "./TimeSlot";
 
-export default function OneDayTimeSlots({ chosenDay, chosenTime }) {
+export default function OneDayTimeSlots({
+  chosenDay,
+  chosenTime,
+  setChosenDateTime,
+}) {
   //здесь получаем данные о доступных слотах, но я просто создам массив
 
   let DATA: string[] = [];
@@ -37,6 +41,10 @@ export default function OneDayTimeSlots({ chosenDay, chosenTime }) {
 
   const [chosenSlot, setChosenSlot] = useState("");
 
+  useEffect(() => {
+    setChosenDateTime(chosenSlot);
+  });
+
   let numberOfLines: number = Math.ceil(slotsInDaytime / 3);
 
   let rows: any[] = [];
@@ -47,7 +55,9 @@ export default function OneDayTimeSlots({ chosenDay, chosenTime }) {
 
   for (let i = 0; i < slotsInDaytime; i++) {
     row.push(
+      //Этот key не срабатывает, почему???
       <TimeSlot
+        key={i}
         setChosenSlot={setChosenSlot}
         isChosen={DATA[i] === chosenSlot}
         slotText={DATA[i]}
