@@ -1,5 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import Animated from "react-native-reanimated";
+import TrainerInfo from "../components/TrainerInfo";
 
 const AboutTrainerScreen = () => {
   const trainerPic =
@@ -7,6 +10,10 @@ const AboutTrainerScreen = () => {
 
   return (
     <View style={{ alignItems: "center", flex: 1 }}>
+      <ScrollView
+        style={styles.scrollView}
+        onScrollBeginDrag={() => console.log("Scrolling!")}
+      ></ScrollView>
       <Image
         style={{
           width: "100%",
@@ -17,23 +24,31 @@ const AboutTrainerScreen = () => {
           uri: trainerPic,
         }}
       ></Image>
-      <View style={styles.info}></View>
+      <Animated.View style={styles.info}>
+        <TrainerInfo />
+      </Animated.View>
     </View>
   );
 };
-
-export default AboutTrainerScreen;
 /*
-<Image
-        style={{
-          width: "100%",
-          height: "50%",
-          marginTop: 20,
-        }}
-        source={{
-          uri: trainerPic,
-        }}
-      ></Image>*/
+      <ScrollView
+        style={styles.scrollView}
+        onScrollBeginDrag={() => console.log("Scrolling!")}
+      >
+        <View
+          style={{ backgroundColor: "blue", height: 200, width: 200 }}
+        ></View>
+        <View
+          style={{
+            marginTop: 300,
+            backgroundColor: "blue",
+            height: 200,
+            width: 200,
+          }}
+        ></View>
+      </ScrollView>
+*/
+export default AboutTrainerScreen;
 
 const styles = StyleSheet.create({
   info: {
@@ -42,9 +57,13 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     width: "100%",
     height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
     position: "absolute",
     marginTop: 300,
+  },
+  scrollView: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "red",
+    position: "absolute",
   },
 });
