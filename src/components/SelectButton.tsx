@@ -7,10 +7,9 @@ import {
   View,
   FlatList,
   Pressable,
-  TouchableOpacity,
 } from "react-native";
 
-export default function SelectButton({ onClose }) {
+const SelectButton = ({ onClose }) => {
   return (
     <View
       style={{
@@ -21,12 +20,14 @@ export default function SelectButton({ onClose }) {
         borderColor: "#F5F5F5",
       }}
     >
-      <TouchableOpacity style={styles.container} onPress={() => onClose()}>
+      <Pressable style={styles.container} onPress={() => onClose()}>
         <Text style={{ fontSize: 16 }}>Выбрать</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
-}
+};
+
+export default SelectButton;
 
 const styles = StyleSheet.create({
   container: {

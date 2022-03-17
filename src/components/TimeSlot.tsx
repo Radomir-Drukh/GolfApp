@@ -6,12 +6,12 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 
-export default function TimeSlot({ setChosenSlot, isChosen, slotText }) {
+const TimeSlot = ({ setChosenSlot, isChosen, slotText }) => {
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={() => {
         setChosenSlot(slotText);
       }}
@@ -23,9 +23,11 @@ export default function TimeSlot({ setChosenSlot, isChosen, slotText }) {
       <Text style={{ color: isChosen ? "#FFFFFF" : "#000000" }}>
         {slotText}
       </Text>
-    </TouchableOpacity>
+    </Pressable>
   );
-}
+};
+
+export default TimeSlot;
 
 const styles = StyleSheet.create({
   timeSlot: {

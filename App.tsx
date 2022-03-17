@@ -1,70 +1,40 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import { Modalize } from "react-native-modalize";
-import { useRef, useState } from "react";
-import BookingModule from "./src/components/BookingModule";
-import SelectButton from "./src/components/SelectButton";
+import React from "react";
+import StartingScreen from "./src/screens/StartingScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import AboutTrainerScreen from "./src/screens/AboutTrainerScreen";
+import { getHeaderTitle } from "@react-navigation/elements";
+import { Image, Pressable, View, Text } from "react-native";
+import TrainerScreenTitle from "./src/components/TrainerScreenTitle";
 
-export default function App() {
-  const modalizeRef = useRef<Modalize>(null);
+const Stack = createStackNavigator();
 
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
-
-  const onClose = () => {
-    modalizeRef.current?.close();
-  };
-
-  const [chosenDateDay, setChosenDateDay] = useState("");
-  const [chosenDateTime, setChosenDateTime] = useState("");
-
-  let verifiedDate =
-    chosenDateDay === "" || chosenDateTime === ""
-      ? "Еще не выбран"
-      : chosenDateDay + " числа в " + chosenDateTime;
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Pressable style={styles.choosingScreenComponents} onPress={onOpen}>
-        <Text style={{ fontSize: 20 }}>Выбрать дату</Text>
-      </Pressable>
-      <Text>Вы забронировали слот: {verifiedDate}</Text>
-
-      <Modalize
-        ref={modalizeRef}
-        modalHeight={544}
-        modalStyle={styles.container}
-        disableScrollIfPossible={false}
-        velocity={10}
-        withHandle={true}
-        threshold={10}
-        FooterComponent={<SelectButton onClose={onClose} />}
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerBackAccessibilityLabel: "true",
+        }}
       >
-        <BookingModule
-          setChosenDateDay={setChosenDateDay}
-          setChosenDateTime={setChosenDateTime}
+        <Stack.Screen
+          name="Стартовая страница"
+          options={{
+            headerShown: false,
+          }}
+          component={StartingScreen}
         />
-      </Modalize>
-    </View>
+        <Stack.Screen
+          name="О тренере"
+          component={AboutTrainerScreen}
+          options={{
+            header: ({ navigation, route, options, back }) =>
+              TrainerScreenTitle({ navigation, route, options, back }),
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  choosingScreenComponents: {
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 10,
-    marginVertical: 30,
-    marginHorizontal: "20%",
-    width: "60%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default App;

@@ -1,19 +1,26 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   StyleSheet,
   TextInput,
   Text,
   View,
   FlatList,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
 } from "react-native-reanimated";
+import DateTimeContext from "../contexts/DateTimePickerContext";
 
-export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
+const WeekSidescroll = ({ chosenDay }) => {
   let DATA: { number: string; weekday: string }[] = [];
 
   for (var i = 1; i < 30; i++) {
@@ -45,8 +52,10 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
   }
   const [selectedNumber, changeSelectedNumber] = useState(chosenDay);
 
+  const dateTimeSetters = useContext(DateTimeContext);
+
   useEffect(() => {
-    setChosenDateDay(selectedNumber);
+    dateTimeSetters.setChosenDateDay(selectedNumber);
   });
 
   const renderItem = ({ item }) => (
@@ -54,7 +63,7 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
   );
 
   const Item = ({ weekday, number }) => (
-    <TouchableOpacity
+    <Pressable
       onPress={() => {
         changeSelectedNumber(number);
       }}
@@ -81,7 +90,7 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
           {number}
         </Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 
   const [currentLeftItemIndex, setCurrentLeftItemIndex] = useState(0);
@@ -136,13 +145,11 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
   };
 
   const onBeginDrag = (e) => {
-    //console.log("Drag started");
     isScrolling.value = true;
     lastContentOffset.value = e.nativeEvent.contentOffset.x;
   };
 
   const onEndDrag = (e) => {
-    //console.log("Drag ended");
     isScrolling.value = false;
   };
 
@@ -157,6 +164,7 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
         onScrollEndDrag={onEndDrag}
         style={{ paddingTop: 20, paddingHorizontal: 5 }}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         data={DATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.number + item.weekday}
@@ -165,7 +173,9 @@ export default function WeekSidescroll({ chosenDay, setChosenDateDay }) {
       />
     </View>
   );
-}
+};
+
+export default WeekSidescroll;
 
 const styles = StyleSheet.create({
   item: {
