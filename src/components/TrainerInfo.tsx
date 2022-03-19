@@ -30,7 +30,7 @@ export default TrainerInfo;
 const styles = StyleSheet.create({
   h1: {
     fontSize: 28,
-    marginTop: 30,
+    marginTop: 25,
     marginHorizontal: 15,
   },
   h2: {

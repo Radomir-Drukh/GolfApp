@@ -3,7 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { getHeaderTitle } from "@react-navigation/elements";
 import { Image, Pressable, View, Text } from "react-native";
-import TrainerScreenTitle from "../components/TrainerScreenTitle";
 import AboutTrainerScreen from "../screens/AboutTrainerScreen";
 import StartingScreen from "../screens/StartingScreen";
 
@@ -11,11 +10,7 @@ const Stack = createStackNavigator();
 
 const NavigationStack = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerBackAccessibilityLabel: "true",
-      }}
-    >
+    <Stack.Navigator>
       <Stack.Screen
         name="Стартовая страница"
         options={{
@@ -27,8 +22,7 @@ const NavigationStack = () => {
         name="О тренере"
         component={AboutTrainerScreen}
         options={{
-          header: ({ navigation, route, options, back }) =>
-            TrainerScreenTitle({ navigation, route, options, back }),
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

@@ -1,53 +1,72 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  Animated,
+} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Animated from "react-native-reanimated";
+//import Animated, { Easing } from "react-native-reanimated";
 import TrainerInfo from "../components/TrainerInfo";
+import NavigationBackButton from "../components/NavigationBackButton";
+import BookButton from "../components/BookButton";
 
 const AboutTrainerScreen = () => {
   const trainerPic =
     "https://s3-alpha-sig.figma.com/img/9023/ee77/a1c490431c8d297388425543e85b27e7?Expires=1648425600&Signature=Q4KIOKEVfJWm2jS2Kzk5QjHoUoEmVKaHhgUEB1MhY5jjFXK1u8vuQhdgdGSvbfZp-sHe-ZKdYdW7bCjb-s0Ph00x8u8rstt4xeuXRaS6ilDaAWyYprLsHbMV8gH-x6bmDWk7E8FcNUgHjxm-4P9cztCThQsZqCFCHRYJ4nIw6-tPgBsU2lSs1-8dKgy3lZbeb67URFrRknjXzB7mg2L-fiSzwVREIvpA-eXKXONSSS5Ppm0iOwmGbjY8mj9o4JGL2h-c7sjHKAmVwL6mb3I~AIs2xuFjXtU3cwWH9L0wO0kd2c5Iz6TxT~F9CiWE9HJ6d5-g5yHVBD6q8AsvUO6Qiw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
 
+  let state: number;
+
+  const translation = useRef(new Animated.Value(0)).current;
+
+  let previousTranslation: number = 0;
+
   return (
-    <View style={{ alignItems: "center", flex: 1 }}>
-      <ScrollView
-        style={styles.scrollView}
-        onScrollBeginDrag={() => console.log("Scrolling!")}
-      ></ScrollView>
+    <Fragment>
       <Image
-        style={{
-          width: "100%",
-          height: 300,
-          marginTop: 20,
-        }}
+        style={styles.image}
         source={{
           uri: trainerPic,
         }}
       ></Image>
-      <Animated.View style={styles.info}>
+      <Animated.View
+        style={[
+          styles.info,
+          {
+            transform: [
+              {
+                translateY: translation,
+              },
+            ],
+          },
+        ]}
+      >
         <TrainerInfo />
       </Animated.View>
-    </View>
+      <View
+        style={styles.scrollingView}
+        onMoveShouldSetResponder={() => true}
+        onResponderMove={(e) => {
+          let diff = state - e.nativeEvent.locationY;
+          if (diff > 100) diff = 0;
+          previousTranslation -= diff;
+          if (previousTranslation < -280) previousTranslation = -280;
+          if (previousTranslation > 0) previousTranslation = 0;
+          translation.setValue(previousTranslation);
+          state = e.nativeEvent.locationY;
+        }}
+        onTouchStart={(e) => {
+          state = e.nativeEvent.locationY;
+        }}
+      ></View>
+      <NavigationBackButton />
+      <BookButton />
+    </Fragment>
   );
 };
-/*
-      <ScrollView
-        style={styles.scrollView}
-        onScrollBeginDrag={() => console.log("Scrolling!")}
-      >
-        <View
-          style={{ backgroundColor: "blue", height: 200, width: 200 }}
-        ></View>
-        <View
-          style={{
-            marginTop: 300,
-            backgroundColor: "blue",
-            height: 200,
-            width: 200,
-          }}
-        ></View>
-      </ScrollView>
-*/
+
 export default AboutTrainerScreen;
 
 const styles = StyleSheet.create({
@@ -65,5 +84,16 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "red",
     position: "absolute",
+  },
+  scrollingView: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "transparent",
+    position: "absolute",
+  },
+  image: {
+    width: "100%",
+    height: 300,
+    marginTop: 20,
   },
 });
