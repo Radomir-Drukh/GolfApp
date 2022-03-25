@@ -18,7 +18,7 @@ import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
 } from "react-native-reanimated";
-import DateTimeContext from "../contexts/DateTimePickerContext";
+import DateTimeContext from "../../../contexts/DateTimePickerContext";
 
 const WeekSidescroll = ({ chosenDay }) => {
   let DATA: { number: string; weekday: string }[] = [];
@@ -69,12 +69,19 @@ const WeekSidescroll = ({ chosenDay }) => {
       }}
       style={styles.day}
     >
-      <Text style={styles.weekday}>{weekday}</Text>
+      <Text
+        style={[
+          styles.weekday,
+          { color: number === selectedNumber ? "black" : "#8F8F8F" },
+        ]}
+      >
+        {weekday}
+      </Text>
       <View
         style={[
           styles.item,
           {
-            backgroundColor: number === selectedNumber ? "#FFEF00" : "#FFFFFF",
+            backgroundColor: number === selectedNumber ? "#3171D3" : "#FFFFFF",
           },
         ]}
       >
@@ -82,8 +89,7 @@ const WeekSidescroll = ({ chosenDay }) => {
           style={[
             styles.number,
             {
-              backgroundColor:
-                number === selectedNumber ? "#FFEF00" : "#FFFFFF",
+              color: number === selectedNumber ? "white" : "#8F8F8F",
             },
           ]}
         >

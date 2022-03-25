@@ -9,9 +9,9 @@ import {
   Pressable,
 } from "react-native";
 import DateTimePickerScreen from "../screens/DateTimePickerScreen";
-import SelectButton from "./SelectButton";
+import SelectButton from "../components/screenComponents/DateTimePickerScreen/SelectButton";
 
-const DateTimePickerModule = ({ modalizeRef, onClose }) => {
+const DateTimePickerModalize = ({ modalizeRef, onClose }) => {
   return (
     <Modalize
       ref={modalizeRef}
@@ -28,7 +28,7 @@ const DateTimePickerModule = ({ modalizeRef, onClose }) => {
   );
 };
 
-export default DateTimePickerModule;
+export default DateTimePickerModalize;
 
 const styles = StyleSheet.create({
   container: {

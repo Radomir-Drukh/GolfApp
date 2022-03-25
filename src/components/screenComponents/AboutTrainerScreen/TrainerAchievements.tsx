@@ -1,16 +1,16 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import OneAchievement from "./OneAchievement";
+import Achievement from "./Achievement";
 
 const TrainerAchievements = () => {
   return (
     <View style={styles.achievements}>
-      <OneAchievement
+      <Achievement
         logo={"clockcircleo"}
         text1={"С 2009 г"}
         text2={"тренерский опыт"}
       />
-      <OneAchievement
+      <Achievement
         logo={"medal"}
         text1={"Мастер спорта"}
         text2={"по теннису"}

@@ -13,7 +13,7 @@ const SelectButton = ({ onClose }) => {
   return (
     <View style={styles.border}>
       <Pressable style={styles.container} onPress={() => onClose()}>
-        <Text style={{ fontSize: 16 }}>Выбрать</Text>
+        <Text style={styles.text}>Выбрать</Text>
       </Pressable>
     </View>
   );
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     marginTop: 23,
     width: "95%",
     borderRadius: 10,
-    backgroundColor: "#FCE300",
+    backgroundColor: "#3171D3",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -38,5 +38,9 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     width: "100%",
     borderColor: "#F5F5F5",
+  },
+  text: {
+    fontSize: 16,
+    color: "white",
   },
 });

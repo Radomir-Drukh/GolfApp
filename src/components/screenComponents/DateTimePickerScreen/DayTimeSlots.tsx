@@ -9,10 +9,10 @@ import {
   Pressable,
 } from "react-native";
 import { RotateInDownLeft } from "react-native-reanimated";
-import DateTimeContext from "../contexts/DateTimePickerContext";
+import DateTimeContext from "../../../contexts/DateTimePickerContext";
 import TimeSlot from "./TimeSlot";
 
-const OneDayTimeSlots = ({ chosenDay, chosenTime }) => {
+const DayTimeSlots = ({ chosenDay, chosenTime }) => {
   //здесь получаем данные о доступных слотах, но я просто создам массив
 
   let DATA: string[] = [];
@@ -86,7 +86,7 @@ const OneDayTimeSlots = ({ chosenDay, chosenTime }) => {
   );
 };
 
-export default OneDayTimeSlots;
+export default DayTimeSlots;
 
 const styles = StyleSheet.create({
   allRows: {

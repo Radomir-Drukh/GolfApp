@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import AllPartsOfDay from "./AllPartsOfDay";
 
-import OneDayTimeSlots from "./OneDayTimeSlots";
+import DayTimeSlots from "./DayTimeSlots";
 
 const TimePicker = ({ chosenDay }) => {
   const [chosenTime, setChosenTime] = useState("Утро");
@@ -19,7 +19,7 @@ const TimePicker = ({ chosenDay }) => {
   return (
     <View style={{ paddingTop: 30, height: 500 }}>
       <AllPartsOfDay chosenTime={chosenTime} setChosenTime={setChosenTime} />
-      <OneDayTimeSlots chosenDay={chosenDay} chosenTime={chosenTime} />
+      <DayTimeSlots chosenDay={chosenDay} chosenTime={chosenTime} />
     </View>
   );
 };

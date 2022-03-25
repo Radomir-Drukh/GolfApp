@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 
-const OneAchievement = ({ logo, text1, text2 }) => {
+const Achievement = ({ logo, text1, text2 }) => {
   const logoComponent = (logo) => {
     if (logo === "clockcircleo")
       return <AntDesign name={logo} size={24} color="blue" />;
@@ -19,7 +19,7 @@ const OneAchievement = ({ logo, text1, text2 }) => {
   );
 };
 
-export default OneAchievement;
+export default Achievement;
 
 const styles = StyleSheet.create({
   prize: {

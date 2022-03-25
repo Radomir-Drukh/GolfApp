@@ -2,7 +2,7 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { Pressable, Text, StyleSheet } from "react-native";
 
-const OnePartOfDay = ({ partOfDay, chosenTime, setChosenTime }) => {
+const PartOfDay = ({ partOfDay, chosenTime, setChosenTime }) => {
   return (
     <Pressable
       onPress={() => {
@@ -10,7 +10,7 @@ const OnePartOfDay = ({ partOfDay, chosenTime, setChosenTime }) => {
       }}
       style={[
         styles.oneTime,
-        { backgroundColor: chosenTime === partOfDay ? "#FFEF00" : "#FFFFFF" },
+        { backgroundColor: chosenTime === partOfDay ? "#3171D3" : "#FFFFFF" },
       ]}
     >
       <Feather
@@ -22,15 +22,17 @@ const OnePartOfDay = ({ partOfDay, chosenTime, setChosenTime }) => {
             : "moon"
         }
         size={24}
-        color="black"
+        color={chosenTime === partOfDay ? "white" : "#8F8F8F"}
         style={{ marginRight: 10 }}
       />
-      <Text>{partOfDay}</Text>
+      <Text style={{ color: chosenTime === partOfDay ? "white" : "#8F8F8F" }}>
+        {partOfDay}
+      </Text>
     </Pressable>
   );
 };
 
-export default OnePartOfDay;
+export default PartOfDay;
 
 const styles = StyleSheet.create({
   oneTime: {

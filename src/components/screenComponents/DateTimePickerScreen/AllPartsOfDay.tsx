@@ -1,21 +1,21 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import OnePartOfDay from "./OnePartOfDay";
+import PartOfDay from "./PartOfDay";
 
 const AllPartsOfDay = ({ chosenTime, setChosenTime }) => {
   return (
     <View style={styles.allTimes}>
-      <OnePartOfDay
+      <PartOfDay
         partOfDay={"Утро"}
         chosenTime={chosenTime}
         setChosenTime={setChosenTime}
       />
-      <OnePartOfDay
+      <PartOfDay
         partOfDay={"День"}
         chosenTime={chosenTime}
         setChosenTime={setChosenTime}
       />
-      <OnePartOfDay
+      <PartOfDay
         partOfDay={"Вечер"}
         chosenTime={chosenTime}
         setChosenTime={setChosenTime}
