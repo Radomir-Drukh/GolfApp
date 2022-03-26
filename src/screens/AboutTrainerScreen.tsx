@@ -62,8 +62,8 @@ const AboutTrainerScreen = ({ navigation }) => {
           //else
 
           //setHeaderVisible(true); - This string alone crashes WTF?
-          console.log(previousTranslation);
-          console.log(headerVisible);
+          //console.log(previousTranslation);
+          //console.log(headerVisible);
         }}
         onTouchStart={(e) => {
           state = e.nativeEvent.locationY;
