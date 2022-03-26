@@ -9,11 +9,11 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 //import Animated, { Easing } from "react-native-reanimated";
-import TrainerInfo from "../components/TrainerInfo";
-import NavigationBackButton from "../components/NavigationBackButton";
-import BookButton from "../components/BookButton";
+import TrainerInfo from "../components/screenComponents/AboutTrainerScreen/TrainerInfo";
+import NavigationBackButton from "../components/baseComponents/NavigationBackButton";
+import BookButton from "../components/screenComponents/AboutTrainerScreen/BookButton";
 
-const AboutTrainerScreen = () => {
+const AboutTrainerScreen = ({ navigation }) => {
   const trainerPic =
     "https://s3-alpha-sig.figma.com/img/9023/ee77/a1c490431c8d297388425543e85b27e7?Expires=1648425600&Signature=Q4KIOKEVfJWm2jS2Kzk5QjHoUoEmVKaHhgUEB1MhY5jjFXK1u8vuQhdgdGSvbfZp-sHe-ZKdYdW7bCjb-s0Ph00x8u8rstt4xeuXRaS6ilDaAWyYprLsHbMV8gH-x6bmDWk7E8FcNUgHjxm-4P9cztCThQsZqCFCHRYJ4nIw6-tPgBsU2lSs1-8dKgy3lZbeb67URFrRknjXzB7mg2L-fiSzwVREIvpA-eXKXONSSS5Ppm0iOwmGbjY8mj9o4JGL2h-c7sjHKAmVwL6mb3I~AIs2xuFjXtU3cwWH9L0wO0kd2c5Iz6TxT~F9CiWE9HJ6d5-g5yHVBD6q8AsvUO6Qiw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
 
@@ -22,6 +22,8 @@ const AboutTrainerScreen = () => {
   const translation = useRef(new Animated.Value(0)).current;
 
   let previousTranslation: number = 0;
+
+  const [headerVisible, setHeaderVisible] = useState(false);
 
   return (
     <Fragment>
@@ -56,6 +58,12 @@ const AboutTrainerScreen = () => {
           if (previousTranslation > 0) previousTranslation = 0;
           translation.setValue(previousTranslation);
           state = e.nativeEvent.locationY;
+          //if (previousTranslation < -210) setHeaderVisible(false);
+          //else
+
+          //setHeaderVisible(true); - This string alone crashes WTF?
+          //console.log(previousTranslation);
+          //console.log(headerVisible);
         }}
         onTouchStart={(e) => {
           state = e.nativeEvent.locationY;

@@ -4,9 +4,9 @@ import { Modalize } from "react-native-modalize";
 import { useRef, useState } from "react";
 import "react-native-gesture-handler";
 import DateTimePickerScreen from "../screens/DateTimePickerScreen";
-import SelectButton from "../components/SelectButton";
+import SelectButton from "../components/screenComponents/DateTimePickerScreen/SelectButton";
 import { gestureHandlerRootHOC } from "react-native-gesture-handler";
-import DateTimePickerModule from "../components/DateTimePickerModule";
+import DateTimePickerModalize from "../modalizes/DateTimePickerModalize";
 import { DateTimeProvider } from "../contexts/DateTimePickerContext";
 
 const StartingScreen = ({ navigation }) => {
@@ -48,7 +48,7 @@ const StartingScreen = ({ navigation }) => {
           setChosenDateTime: setChosenDateTime,
         }}
       >
-        <DateTimePickerModule modalizeRef={modalizeRef} onClose={onClose} />
+        <DateTimePickerModalize modalizeRef={modalizeRef} onClose={onClose} />
       </DateTimeProvider>
     </View>
   );

@@ -5,6 +5,8 @@ import { getHeaderTitle } from "@react-navigation/elements";
 import { Image, Pressable, View, Text } from "react-native";
 import AboutTrainerScreen from "../screens/AboutTrainerScreen";
 import StartingScreen from "../screens/StartingScreen";
+import TrainersScreen from "../screens/TrainersScreen";
+import NavigationTab from "./NavigationTab";
 
 const Stack = createStackNavigator();
 
@@ -12,11 +14,11 @@ const NavigationStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Стартовая страница"
+        name="Все вкладки"
+        component={NavigationTab}
         options={{
           headerShown: false,
         }}
-        component={StartingScreen}
       />
       <Stack.Screen
         name="О тренере"

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Animated from "react-native-reanimated";
-import TrainerAchievements from "../components/TrainerAchievements";
+import TrainerAchievements from "./TrainerAchievements";
 
 const TrainerInfo = () => {
   return (
