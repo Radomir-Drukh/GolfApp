@@ -9,6 +9,7 @@ import {
 } from "@expo/vector-icons";
 import EmptyView from "../../src/components/baseComponents/EmptyView";
 import TrainersScreen from "../../src/screens/TrainersScreen";
+import CourtsScreen from "../screens/CourtsScreen";
 
 const Tab = createBottomTabNavigator();
 const NavigationTab = () => {
@@ -16,13 +17,16 @@ const NavigationTab = () => {
     <Tab.Navigator>
       <Tab.Screen
         name="Корты"
-        component={EmptyView}
+        component={CourtsScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="focus-field"
-              size={24}
-              color={color}
+          tabBarIcon: ({ focused, color, size }) => (
+            <Image
+              source={require("../assets/field.png")}
+              style={{
+                tintColor: color,
+                height: size,
+                width: size,
+              }}
             />
           ),
           tabBarLabelStyle: { fontSize: 12 },
@@ -32,8 +36,15 @@ const NavigationTab = () => {
         name="Услуги"
         component={EmptyView}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="sports-tennis" size={24} color={color} />
+          tabBarIcon: ({ focused, color, size }) => (
+            <Image
+              source={require("../assets/tennis.png")}
+              style={{
+                tintColor: color,
+                height: size,
+                width: size,
+              }}
+            />
           ),
           tabBarLabelStyle: { fontSize: 12 },
         }}
@@ -42,8 +53,15 @@ const NavigationTab = () => {
         name="Клуб"
         component={EmptyView}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-tennisball-outline" size={24} color={color} />
+          tabBarIcon: ({ focused, color, size }) => (
+            <Image
+              source={require("../assets/balls.png")}
+              style={{
+                tintColor: color,
+                height: size,
+                width: size,
+              }}
+            />
           ),
           tabBarLabelStyle: { fontSize: 12 },
         }}
@@ -52,8 +70,15 @@ const NavigationTab = () => {
         name="Тренера"
         component={TrainersScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-man-sharp" size={24} color={color} />
+          tabBarIcon: ({ focused, color, size }) => (
+            <Image
+              source={require("../assets/visor.png")}
+              style={{
+                tintColor: color,
+                height: size,
+                width: size,
+              }}
+            />
           ),
           tabBarLabelStyle: { fontSize: 12 },
         }}
@@ -62,8 +87,15 @@ const NavigationTab = () => {
         name="Заказы"
         component={EmptyView}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="newspaper-outline" size={24} color={color} />
+          tabBarIcon: ({ focused, color, size }) => (
+            <Image
+              source={require("../assets/orders.png")}
+              style={{
+                tintColor: color,
+                height: 20,
+                width: 20,
+              }}
+            />
           ),
           tabBarLabelStyle: { fontSize: 12 },
         }}

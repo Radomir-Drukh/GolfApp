@@ -10,42 +10,11 @@ import { ModalizesOpenFunctionsProvider } from "./src/contexts/ModalizesOpenFunc
 import ModalizesOpenFunctionsContext from "./src/contexts/ModalizesOpenFunctionsContext";
 
 const App = () => {
-  const modalizeRef = useRef<Modalize>(null);
-
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
-
-  const onClose = () => {
-    modalizeRef.current?.close();
-  };
-
-  const [chosenDateDay, setChosenDateDay] = useState("");
-  const [chosenDateTime, setChosenDateTime] = useState("");
-
-  let verifiedDate =
-    chosenDateDay === "" || chosenDateTime === ""
-      ? "Еще не выбран"
-      : chosenDateDay + " числа в " + chosenDateTime;
   return (
     <>
       <NavigationContainer>
-        <ModalizesOpenFunctionsProvider
-          value={{
-            dateTimePickerModalizeOpen: onOpen,
-          }}
-        >
-          <NavigationStack />
-        </ModalizesOpenFunctionsProvider>
+        <NavigationStack />
       </NavigationContainer>
-      <DateTimeProvider
-        value={{
-          setChosenDateDay: setChosenDateDay,
-          setChosenDateTime: setChosenDateTime,
-        }}
-      >
-        <DateTimePickerModalize modalizeRef={modalizeRef} onClose={onClose} />
-      </DateTimeProvider>
     </>
   );
 };

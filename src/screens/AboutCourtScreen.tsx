@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Modalize } from "react-native-modalize";
-import AboutTrainerScreenLayout from "../components/screenComponents/AboutTrainerScreen/AboutTrainerScreenLayout";
+import AboutCourtScreenLayout from "../components/screenComponents/AboutCourtScreen/AboutCourtScreenLayout";
 import { DateTimeProvider } from "../contexts/DateTimePickerContext";
 import DateTimePickerModalize from "../modalizes/DateTimePickerModalize";
 
-const AboutTrainerScreen = ({ navigation }) => {
+const AboutCourtScreen = ({ navigation }) => {
   const modalizeRef = useRef<Modalize>(null);
 
   const openModalize = () => {
@@ -27,7 +27,7 @@ const AboutTrainerScreen = ({ navigation }) => {
 
   return (
     <>
-      <AboutTrainerScreenLayout openModalize={openModalize} />
+      <AboutCourtScreenLayout openModalize={openModalize} />
       <DateTimeProvider
         value={{
           setChosenDateDay: setChosenDateDay,
@@ -43,4 +43,4 @@ const AboutTrainerScreen = ({ navigation }) => {
   );
 };
 
-export default AboutTrainerScreen;
+export default AboutCourtScreen;

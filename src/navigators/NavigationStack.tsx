@@ -7,6 +7,7 @@ import AboutTrainerScreen from "../screens/AboutTrainerScreen";
 import StartingScreen from "../screens/StartingScreen";
 import TrainersScreen from "../screens/TrainersScreen";
 import NavigationTab from "./NavigationTab";
+import AboutCourtScreen from "../screens/AboutCourtScreen";
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,13 @@ const NavigationStack = () => {
       <Stack.Screen
         name="О тренере"
         component={AboutTrainerScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="О корте"
+        component={AboutCourtScreen}
         options={{
           headerShown: false,
         }}
