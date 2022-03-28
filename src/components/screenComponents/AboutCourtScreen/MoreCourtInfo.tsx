@@ -1,25 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import TextListInfoItem from "../../baseComponents/TextListInfoItem";
+import TextListInfo from "../../baseComponents/TextListInfo";
 
-const MoreInfo = ({ moreSelected }: { moreSelected: boolean }) => {
+const MoreCourtInfo = ({ moreSelected }: { moreSelected: boolean }) => {
+  const numeration1: string[] = [
+    "Пять кортов закрытого типа со специальным покрытием хард US Open с десятью слоями смягчения.",
+    "Все залы оборудованы современной системой кондиционирования.",
+    "Удобно оборудованные раздевалки, отдельно для детей и отдельно для взрослых.",
+    "Есть бесплатный Wi-Fi.",
+  ];
+
+  const numeration2: string[] = ["Пункт 1", "Пункт 2", "Пункт 3", "Пункт 4"];
+
   if (moreSelected)
     return (
       <View style={styles.container}>
-        <TextListInfoItem
-          text={
-            "Пять кортов закрытого типа со специальным покрытием хард US Open с десятью слоями смягчения."
-          }
-        />
-        <TextListInfoItem
-          text={"Все залы оборудованы современной системой кондиционирования."}
-        />
-        <TextListInfoItem text={"Есть бесплатный Wi-Fi."} />
-        <TextListInfoItem
-          text={
-            "Удобно оборудованные раздевалки, отдельно для детей и отдельно для взрослых."
-          }
-        />
+        <TextListInfo strings={numeration1} />
         <Text style={styles.h3}>
           Для тех, кто посещает тренировки вместе с детьми, есть специально
           оборудованная детская комната – в ней вы можете оставить своего малыша
@@ -32,16 +29,13 @@ const MoreInfo = ({ moreSelected }: { moreSelected: boolean }) => {
   else
     return (
       <View style={styles.container}>
-        <TextListInfoItem text={"Пункт 1"} />
-        <TextListInfoItem text={"Пункт 2"} />
-        <TextListInfoItem text={"Пункт 3"} />
-        <TextListInfoItem text={"Пункт 4"} />
+        <TextListInfo strings={numeration2} />
         <Text style={styles.h3}>Очень большой и информативный текст</Text>
       </View>
     );
 };
 
-export default MoreInfo;
+export default MoreCourtInfo;
 
 const styles = StyleSheet.create({
   container: {

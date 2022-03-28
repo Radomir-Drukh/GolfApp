@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     borderColor: "#F5F5F5",
     borderWidth: 2,
     marginBottom: 10,
+    height: 39,
   },
   text: {
     fontSize: 16,

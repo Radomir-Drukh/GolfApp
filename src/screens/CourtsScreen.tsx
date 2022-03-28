@@ -7,22 +7,12 @@ import {
   Dimensions,
   Pressable,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import CourtsList from "../components/screenComponents/CourtsScreen/CourtsList";
-import CourtTypeSelection from "../components/screenComponents/CourtsScreen/CourtTypeSelection";
+import CourtsScreenLayout from "../components/screenComponents/CourtsScreen/CourtsScreenLayout";
 
 const CourtsScreen = () => {
-  const [indoorSelected, setOpenSelected] = useState(true);
   return (
     <>
-      <CourtTypeSelection
-        indoorSelected={indoorSelected}
-        setOpenSelected={setOpenSelected}
-      />
-      <View
-        style={{ width: "100%", height: 10, backgroundColor: "white" }}
-      ></View>
-      <CourtsList indoorSelected={indoorSelected} />
+      <CourtsScreenLayout />
     </>
   );
 };

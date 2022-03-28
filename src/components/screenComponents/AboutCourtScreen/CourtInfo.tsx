@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
-import CourtAdress from "./CourtAdress";
-import CourtInformationSelection from "./CourtInformationSelection";
-import MoreInfo from "./MoreInfo";
+import Adress from "../../baseComponents/Adress";
+import InformationSelection from "../../baseComponents/InformationSelection";
+import MoreCourtInfo from "./MoreCourtInfo";
 
 const CourtInfo = () => {
   const [moreSelected, setMoreSelected] = useState(true);
   return (
     <View style={styles.view}>
-      <CourtAdress adress={"Новогорск, ул. Заречная, вл.8"} />
+      <Adress adress={"Новогорск, ул. Заречная, вл.8"} />
       <Text style={styles.h1}>Крытый корт</Text>
       <Text style={styles.h2}>О корте</Text>
       <Text style={styles.h3}>
@@ -18,11 +18,13 @@ const CourtInfo = () => {
         максимально комфортные условия вне зависимости от времени года: +
         18-20°C.
       </Text>
-      <CourtInformationSelection
+      <InformationSelection
+        text1={"Подробнее"}
+        text2={"Дополнительно"}
         moreSelected={moreSelected}
         setMoreSelected={setMoreSelected}
       />
-      <MoreInfo moreSelected={moreSelected} />
+      <MoreCourtInfo moreSelected={moreSelected} />
     </View>
   );
 };

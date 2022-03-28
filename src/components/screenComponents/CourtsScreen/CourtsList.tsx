@@ -8,11 +8,7 @@ import {
   Pressable,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import CourtBookButton from "./CourtBookButton";
-import CourtCapacity from "./CourtCapacity";
 import CourtCard from "./CourtCard";
-import CourtInfo from "./CourtInfo";
-import CourtTypeSelection from "./CourtTypeSelection";
 
 const CourtsList = ({ indoorSelected }: { indoorSelected: boolean }) => {
   const indoorCourtPic =
@@ -45,7 +41,7 @@ const CourtsList = ({ indoorSelected }: { indoorSelected: boolean }) => {
         />
       );
 
-  DATA.push(<View key={"dummy1"} style={{ height: 50 }}></View>);
+  DATA.push(<View key={"dummy1"} style={{ height: 70 }}></View>);
 
   return (
     <ScrollView

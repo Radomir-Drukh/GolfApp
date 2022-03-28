@@ -10,6 +10,7 @@ import {
 import EmptyView from "../../src/components/baseComponents/EmptyView";
 import TrainersScreen from "../../src/screens/TrainersScreen";
 import CourtsScreen from "../screens/CourtsScreen";
+import ServicesScreen from "../screens/ServicesScreen";
 
 const Tab = createBottomTabNavigator();
 const NavigationTab = () => {
@@ -34,7 +35,7 @@ const NavigationTab = () => {
       />
       <Tab.Screen
         name="Услуги"
-        component={EmptyView}
+        component={ServicesScreen}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Image

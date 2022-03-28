@@ -6,12 +6,16 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const CourtInformationSelection = ({
+const InformationSelection = ({
   moreSelected,
   setMoreSelected,
+  text1,
+  text2,
 }: {
   moreSelected: boolean;
   setMoreSelected: React.Dispatch<React.SetStateAction<boolean>>;
+  text1: string;
+  text2: string;
 }) => {
   return (
     <View style={styles.view}>
@@ -29,7 +33,7 @@ const CourtInformationSelection = ({
               { color: moreSelected ? "#3171D3" : "rgba(0, 0, 0, 0.6)" },
             ]}
           >
-            Подробнее
+            {text1}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -45,7 +49,7 @@ const CourtInformationSelection = ({
               { color: moreSelected ? "rgba(0, 0, 0, 0.6)" : "#3171D3" },
             ]}
           >
-            Дополнительно
+            {text2}
           </Text>
         </TouchableOpacity>
       </View>
@@ -53,7 +57,7 @@ const CourtInformationSelection = ({
   );
 };
 
-export default CourtInformationSelection;
+export default InformationSelection;
 
 const styles = StyleSheet.create({
   view: {

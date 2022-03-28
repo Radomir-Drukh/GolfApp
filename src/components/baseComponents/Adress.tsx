@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 
-const CourtAdress = ({ adress }: { adress: string }) => {
+const Adress = ({ adress }: { adress: string }) => {
   return (
     <View style={styles.view}>
       <Image
-        source={require("../../../assets/location-outline.png")}
+        source={require("../../assets/location-outline.png")}
         style={styles.image}
       />
       <Text style={styles.text}>Новогорск, ул. Заречная, вл.8</Text>
@@ -13,7 +13,7 @@ const CourtAdress = ({ adress }: { adress: string }) => {
   );
 };
 
-export default CourtAdress;
+export default Adress;
 
 const styles = StyleSheet.create({
   image: {
