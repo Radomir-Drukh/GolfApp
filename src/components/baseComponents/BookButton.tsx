@@ -2,19 +2,16 @@ import React, { useContext, useRef, useState } from "react";
 import { Pressable, StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Modalize } from "react-native-modalize";
-import { DateTimeProvider } from "../../../contexts/DateTimePickerContext";
-import DateTimePickerModalize from "../../../modalizes/DateTimePickerModalize";
-import ModalizesOpenFunctionsContext from "../../../contexts/ModalizesOpenFunctionsContext";
+import { DateTimeProvider } from "../../contexts/DateTimePickerContext";
+import DateTimePickerModalize from "../../modalizes/DateTimePickerModalize";
+import ModalizesOpenFunctionsContext from "../../contexts/ModalizesOpenFunctionsContext";
 
-const BookButton = () => {
-  const modalizesOpenFunctions = useContext(ModalizesOpenFunctionsContext);
+const BookButton = ({ openModalize }: { openModalize: () => void }) => {
+  //const modalizesOpenFunctions = useContext(ModalizesOpenFunctionsContext);
 
   return (
     <View style={styles.container}>
-      <Pressable
-        style={styles.button}
-        onPress={modalizesOpenFunctions.dateTimePickerModalizeOpen}
-      >
+      <Pressable style={styles.button} onPress={openModalize}>
         <AntDesign name="plus" size={20} color="white" />
         <Text style={styles.text}>Записаться</Text>
       </Pressable>

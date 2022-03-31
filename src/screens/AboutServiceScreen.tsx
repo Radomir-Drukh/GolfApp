@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Modalize } from "react-native-modalize";
-import AboutTrainerScreenLayout from "../components/screenComponents/AboutTrainerScreen/AboutTrainerScreenLayout";
+import AboutServiceScreenLayout from "../components/screenComponents/AboutServiceScreen/AboutServiceScreenLayout";
 import { DateTimeProvider } from "../contexts/DateTimePickerContext";
 import DateTimePickerModalize from "../modalizes/DateTimePickerModalize";
 
-const AboutTrainerScreen = ({ navigation }) => {
+const AboutServiceScreen = ({ navigation }) => {
   const modalizeRef = useRef<Modalize>(null);
 
   const openModalize = () => {
@@ -27,7 +27,7 @@ const AboutTrainerScreen = ({ navigation }) => {
 
   return (
     <>
-      <AboutTrainerScreenLayout openModalize={openModalize} />
+      <AboutServiceScreenLayout openModalize={openModalize} />
       <DateTimeProvider
         value={{
           setChosenDateDay: setChosenDateDay,
@@ -43,4 +43,4 @@ const AboutTrainerScreen = ({ navigation }) => {
   );
 };
 
-export default AboutTrainerScreen;
+export default AboutServiceScreen;

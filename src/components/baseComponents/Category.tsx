@@ -52,11 +52,12 @@ const styles = StyleSheet.create({
     borderColor: "#F5F5F5",
     borderWidth: 2,
     marginBottom: 10,
+    height: 39,
   },
   text: {
     fontSize: 16,
     marginHorizontal: 14,
-    marginTop: 5,
-    marginBottom: 7,
+    marginTop: 6,
+    marginBottom: 10,
   },
 });

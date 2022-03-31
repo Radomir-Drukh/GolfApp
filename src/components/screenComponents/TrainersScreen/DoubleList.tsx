@@ -75,8 +75,8 @@ const DoubleList = ({ selectedCategory }: { selectedCategory: string }) => {
 
   //Пустые View в конце массива для того, чтобы часть карточек тренеров не скрывалась
   //полосой навигации
-  DATA.push(<View key={"dummy1"} style={{ height: 50 }}></View>);
-  DATA.push(<View key={"dummy2"} style={{ height: 50 }}></View>);
+  DATA.push(<View key={"dummy1"} style={{ height: 70 }}></View>);
+  DATA.push(<View key={"dummy2"} style={{ height: 70 }}></View>);
 
   return (
     <View style={styles.view}>

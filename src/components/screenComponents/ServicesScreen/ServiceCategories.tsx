@@ -3,7 +3,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import Category from "../../baseComponents/Category";
 import { StyleSheet, Text } from "react-native";
 
-const Categories = ({
+const ServiceCategories = ({
   selectedCategory,
   setSelectedCategory,
 }: {
@@ -24,7 +24,7 @@ const Categories = ({
         setSelectedCategory={setSelectedCategory}
       />
       <Category
-        text={"Теннис"}
+        text={"ОФП"}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
@@ -39,7 +39,7 @@ const Categories = ({
         setSelectedCategory={setSelectedCategory}
       />
       <Category
-        text={"Поедание бутербродов на скорость"}
+        text={"Курс по приготовлению бутербродов"}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
@@ -47,10 +47,10 @@ const Categories = ({
   );
 };
 
-export default Categories;
+export default ServiceCategories;
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "white",
   },
 });
