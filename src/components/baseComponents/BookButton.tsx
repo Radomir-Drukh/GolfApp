@@ -6,14 +6,20 @@ import { DateTimeProvider } from "../../contexts/DateTimePickerContext";
 import DateTimePickerModalize from "../../modalizes/DateTimePickerModalize";
 import ModalizesOpenFunctionsContext from "../../contexts/ModalizesOpenFunctionsContext";
 
-const BookButton = ({ openModalize }: { openModalize: () => void }) => {
+const BookButton = ({
+  text,
+  openModalize,
+}: {
+  text: string;
+  openModalize: () => void;
+}) => {
   //const modalizesOpenFunctions = useContext(ModalizesOpenFunctionsContext);
 
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={openModalize}>
         <AntDesign name="plus" size={20} color="white" />
-        <Text style={styles.text}>Записаться</Text>
+        <Text style={styles.text}>{text}</Text>
       </Pressable>
     </View>
   );

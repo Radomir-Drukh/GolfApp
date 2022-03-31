@@ -37,6 +37,9 @@ const AboutServiceScreenLayout = ({
           uri: servicePic,
         }}
       ></Image>
+      <View
+        style={{ width: "100%", height: "100%", backgroundColor: "white" }}
+      ></View>
       <Animated.View
         style={[
           styles.info,
@@ -69,7 +72,7 @@ const AboutServiceScreenLayout = ({
         }}
       ></View>
       <AnimatedTopbar translation={translation} />
-      <BookButton openModalize={openModalize} />
+      <BookButton text={"Записаться"} openModalize={openModalize} />
     </Fragment>
   );
 };

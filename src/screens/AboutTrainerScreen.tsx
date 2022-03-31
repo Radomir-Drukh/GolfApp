@@ -2,32 +2,105 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Modalize } from "react-native-modalize";
 import AboutTrainerScreenLayout from "../components/screenComponents/AboutTrainerScreen/AboutTrainerScreenLayout";
 import { DateTimeProvider } from "../contexts/DateTimePickerContext";
+import { SignUpProvider } from "../contexts/SignUpContext";
 import DateTimePickerModalize from "../modalizes/DateTimePickerModalize";
+import SignUpInfoModalize from "../modalizes/ServiceSignUpInfoModalize";
+import SignUpModalize from "../modalizes/ServiceSignUpModalize";
+import SignUpResultModalize from "../modalizes/ServiceSignUpResultModalize";
 
 const AboutTrainerScreen = ({ navigation }) => {
-  const modalizeRef = useRef<Modalize>(null);
+  const signUpModalizeRef = useRef<Modalize>(null);
 
-  const openModalize = () => {
-    modalizeRef.current?.open();
+  const openSignUpModalize = () => {
+    signUpModalizeRef.current?.open();
   };
 
-  const closeModalize = () => {
-    modalizeRef.current?.close();
+  const closeServiceModalize = () => {
+    signUpModalizeRef.current?.close();
+  };
+
+  const dateModalizeRef = useRef<Modalize>(null);
+
+  const openDateModalize = () => {
+    dateModalizeRef.current?.open();
+  };
+
+  const closeDateModalize = () => {
+    dateModalizeRef.current?.close();
+  };
+
+  const resultModalizeRef = useRef<Modalize>(null);
+
+  const openResultModalize = () => {
+    resultModalizeRef.current?.open();
+  };
+
+  const closeResultModalize = () => {
+    resultModalizeRef.current?.close();
+  };
+
+  const infoModalizeRef = useRef<Modalize>(null);
+
+  const openInfoModalize = () => {
+    infoModalizeRef.current?.open();
+  };
+
+  const closeInfoModalize = () => {
+    infoModalizeRef.current?.close();
   };
 
   const [chosenDateDay, setChosenDateDay] = useState("");
   const [chosenDateTime, setChosenDateTime] = useState("");
 
+  const today = new Date();
+
+  const [amount, setAmount] = useState(1);
+
   let verifiedDate =
     chosenDateDay === "" || chosenDateTime === ""
-      ? "Еще не выбран"
-      : chosenDateDay + " числа в " + chosenDateTime;
+      ? "Выберите время визита"
+      : chosenDateDay +
+        "." +
+        today.getMonth() +
+        "." +
+        today.getFullYear() +
+        " " +
+        chosenDateTime;
+
+  const [userNumber, setUserNumber] = useState("");
 
   //one context for all modilizes
 
   return (
     <>
-      <AboutTrainerScreenLayout openModalize={openModalize} />
+      <AboutTrainerScreenLayout openModalize={openSignUpModalize} />
+      <SignUpProvider
+        value={{
+          price: "2000",
+          amount: amount,
+          setAmount: setAmount,
+          verifiedDate: verifiedDate,
+          openResultModalize: openResultModalize,
+          openDateModalize: openDateModalize,
+          openInfoModalize: openInfoModalize,
+          userNumber: userNumber,
+          setUserNumber: setUserNumber,
+          modalizeType: "trainer",
+        }}
+      >
+        <SignUpModalize
+          modalizeRef={signUpModalizeRef}
+          onClose={closeServiceModalize}
+        />
+        <SignUpResultModalize
+          modalizeRef={resultModalizeRef}
+          onClose={closeResultModalize}
+        />
+        <SignUpInfoModalize
+          modalizeRef={infoModalizeRef}
+          onClose={closeInfoModalize}
+        />
+      </SignUpProvider>
       <DateTimeProvider
         value={{
           setChosenDateDay: setChosenDateDay,
@@ -35,8 +108,8 @@ const AboutTrainerScreen = ({ navigation }) => {
         }}
       >
         <DateTimePickerModalize
-          modalizeRef={modalizeRef}
-          onClose={closeModalize}
+          modalizeRef={dateModalizeRef}
+          onClose={closeDateModalize}
         />
       </DateTimeProvider>
     </>

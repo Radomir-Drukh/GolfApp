@@ -11,6 +11,7 @@ import EmptyView from "../../src/components/baseComponents/EmptyView";
 import TrainersScreen from "../../src/screens/TrainersScreen";
 import CourtsScreen from "../screens/CourtsScreen";
 import ServicesScreen from "../screens/ServicesScreen";
+import MainScreen from "../screens/MainScreen";
 
 const Tab = createBottomTabNavigator();
 const NavigationTab = () => {
@@ -52,7 +53,7 @@ const NavigationTab = () => {
       />
       <Tab.Screen
         name="Клуб"
-        component={EmptyView}
+        component={MainScreen}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Image
