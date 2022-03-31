@@ -9,6 +9,7 @@ import TrainersScreen from "../screens/TrainersScreen";
 import NavigationTab from "./NavigationTab";
 import AboutCourtScreen from "../screens/AboutCourtScreen";
 import AboutServiceScreen from "../screens/AboutServiceScreen";
+import AboutClubScreen from "../screens/AboutClubScreen";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,13 @@ const NavigationStack = () => {
       <Stack.Screen
         name="О услуге"
         component={AboutServiceScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="О клубе"
+        component={AboutClubScreen}
         options={{
           headerShown: false,
         }}

@@ -37,6 +37,9 @@ const AboutTrainerScreenLayout = ({
           uri: trainerPic,
         }}
       ></Image>
+      <View
+        style={{ width: "100%", height: "100%", backgroundColor: "white" }}
+      ></View>
       <Animated.View
         style={[
           styles.info,
@@ -69,7 +72,7 @@ const AboutTrainerScreenLayout = ({
         }}
       ></View>
       <AnimatedTopbar translation={translation} />
-      <BookButton openModalize={openModalize} />
+      <BookButton text={"Записаться"} openModalize={openModalize} />
     </Fragment>
   );
 };
